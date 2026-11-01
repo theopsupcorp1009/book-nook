@@ -11,10 +11,12 @@ import {
 } from "@/components/ui/popover";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { BiExit } from "react-icons/bi";
+import { useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/", active: true },
-  { label: "All Books", href: "/books" },
+  { label: "All Books", href: "/all-books" },
   { label: "Add Book", href: "/add-book" },
   { label: "My Books", href: "/my-books" },
   { label: "My Borrows", href: "/my-borrows" },
@@ -22,8 +24,22 @@ const navLinks = [
 
 const Navbar = () => {
   const router = useRouter();
+
+  const [darkMode, setDarkmode] = useState(false);
+
+
   const { data: session } = useSession();
   const user = session?.user;
+
+//   const handleTheme = () => {
+//   setTheme((prev) => {
+//     const newTheme = !prev;
+
+//     document.documentElement.classList.toggle("dark", newTheme);
+
+//     return newTheme;
+//   });
+// };
 
   const handleSignOut = async () => {
     await authClient.signOut({
@@ -54,27 +70,42 @@ const Navbar = () => {
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.label}>
-              <Link
-                href={link.href}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {session
+            ? navLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))
+            : navLinks.slice(0, 2).map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className={`rounded-full px-4 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
         </ul>
 
-        {session ? (
-          <div className="flex items-center justiy-end gap-8">
+        <div className="flex justify-end items-center gap-5">
+          <div className="border border-gray-300 shadow-md rounded-full">
             <Image
-              src="/assets/icons/moon.svg"
+              onClick={()=>setDarkmode(!darkMode)}
+              src={`${darkMode ? "/assets/icons/moon.svg" : "/assets/icons/sun.svg"}`}
               alt="Moon"
               width={30}
               height={30}
-              className="cursor-pointer"
+              className="cursor-pointer p-1"
             />
+         </div>
+
+        {session ? (
             <Popover>
               <PopoverTrigger>
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-black">
@@ -87,7 +118,7 @@ const Navbar = () => {
                   />
                 </div>
               </PopoverTrigger>
-              <PopoverContent className="w-48 p-5">
+              <PopoverContent className="w-48 p-5" align="start">
                 <div>
                   <p className="font-bold">{user?.name}</p>
                   <p className="text-[12px] text-muted-foreground">
@@ -95,28 +126,34 @@ const Navbar = () => {
                   </p>
                 </div>
                 <hr />
-                <button className="w-full text-left text-sm font-semibold cursor-pointer">
-                  My Profile
-                </button>
-                <button
-                  onClick={handleSignOut}
-                  className="w-full text-left text-sm text-red-500 font-semibold cursor-pointer"
-                >
-                  Sign Out
-                </button>
+                <div className="flex justify-start items-center gap-2 cursor-pointer">
+                  <div className="relative w-7 h-7 shrink-0 rounded-full overflow-hidden border border-black">
+                    <Image
+                      src={user?.image || "/assets/images/default-avatar.png"}
+                      alt="User profile"
+                      fill
+                      sizes="40px"
+                      className="object-contain rounded-full"
+                    />
+                  </div>
+                  <button className="w-full text-left text-sm font-semibold cursor-pointer">
+                    My Profile
+                  </button>
+                </div>
+
+                <div className="flex justify-start items-center gap-2 text-red-500 cursor-pointer ">
+                  <BiExit className="text-xl" />
+                  <button
+                    onClick={handleSignOut}
+                    className="w-full text-left text-sm font-semibold cursor-pointer "
+                  >
+                    Sign Out
+                  </button>
+                </div>
               </PopoverContent>
             </Popover>
-          </div>
         ) : (
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              aria-label="Toggle theme"
-              className="flex size-10 items-center justify-center rounded-xl border border-gray-200 text-gray-700 transition-colors hover:bg-gray-50"
-            >
-              <Moon className="size-5" />
-            </button>
-
             <Link
               href="/sign-in"
               className="rounded-xl border border-gray-200 px-4 py-2 text-sm font-semibold text-gray-800 transition-colors hover:border-orange-300 hover:bg-orange-50 hover:text-orange-600"
@@ -131,6 +168,7 @@ const Navbar = () => {
             </Link>
           </div>
         )}
+        </div>
       </nav>
     </header>
   );

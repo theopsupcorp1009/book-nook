@@ -127,3 +127,18 @@
     font-family: var(--font-jakarta), sans-serif;
     }
 }
+
+.booknook-banner .swiper-pagination {
+  bottom: 20px !important;
+}
+
+.booknook-banner .swiper-pagination-bullet {
+  background: white;
+  opacity: 0.4;
+}
+
+.booknook-banner .swiper-pagination-bullet-active {
+  width: 32px;
+  border-radius: 999px;
+  opacity: 1;
+}
