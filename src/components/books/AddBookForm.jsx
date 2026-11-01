@@ -153,14 +153,14 @@ const AddBookForm = ({ categories }) => {
             <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
               Uploader Name
             </label>
-            <Input name="uploaderName" value={user?.name || ""} readOnly />
+            <Input name="uploaderName" value={user?.name || ""} readOnly className="text-xs font-extrabold"/>
           </div>
 
           <div className="flex flex-col gap-1">
             <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
               Uploader Email
             </label>
-            <Input name="uploaderEmail" value={user?.email || ""} readOnly />
+            <Input name="uploaderEmail" value={user?.email || ""} readOnly className="text-xs font-extrabold"/>
           </div>
         </div>
 
