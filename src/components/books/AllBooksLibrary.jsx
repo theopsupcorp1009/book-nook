@@ -1,50 +1,42 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BookCard from "@/components/books/BookCard";
 
-const CATEGORIES = ["Fiction", "Science", "History", "Kids"];
+const AllBooksLibrary = ({ categories, books }) => {
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("All");
 
-const AllBooksLibrary = ({ books = [] }) => {
-  const [search, setSearch] = React.useState("");
-  const [activeCategory, setActiveCategory] = React.useState("All");
+  const filteredBooks = books.filter(book=>{
+    if(activeCategory !== "All" && book.category!==activeCategory){
+      return false;
+    }
 
-  const filteredBooks = books.filter((book) => {
-    const category = book.category || "Others";
-    const matchesCategory =
-      activeCategory === "All"
-        ? true
-        : activeCategory === "Others"
-          ? !CATEGORIES.includes(category)
-          : category === activeCategory;
+    const query = search.toLowerCase();
+    return (
+      book.title?.toLowerCase().includes(query) 
+      || book.author?.toLowerCase().includes(query)
+    )
 
-    const query = search.trim().toLowerCase();
-    const matchesSearch =
-      !query ||
-      book.title?.toLowerCase().includes(query) ||
-      book.author?.toLowerCase().includes(query);
-
-    return matchesCategory && matchesSearch;
-  });
+  })
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-slate-50 to-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* Section header */}
+
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+          <h1 className="text-3xl font-extrabold text-gray-900">
             All Books Library
           </h1>
-          <p className="mt-3 text-base text-gray-500">
+          <p className="mt-3 text-[12px] text-gray-500">
             Explore our complete collection of titles. Search by title or filter
             by category.
           </p>
         </div>
 
-        {/* Search + category filter */}
         <div className="mt-10 flex flex-col items-center gap-4 lg:flex-row lg:justify-between">
           <div className="relative w-full max-w-md">
             <Search className="absolute top-1/2 left-4 size-5 -translate-y-1/2 text-gray-400" />
@@ -52,20 +44,20 @@ const AllBooksLibrary = ({ books = [] }) => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by title or author..."
-              className="h-12 rounded-full border-gray-100 bg-white pr-4 pl-12 font-normal text-gray-900 shadow-sm placeholder:text-gray-400"
+              className="h-12 rounded-xl border-gray-100 bg-white pr-4 pl-12 font-normal text-gray-900 shadow-sm placeholder:text-[12px] placeholder:text-gray-400"
             />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            {["All", ...CATEGORIES, "Others"].map((category) => (
+          <div className="flex gap-2">
+            {["All", ...categories].map((category) => (
               <Button
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 variant={activeCategory === category ? "default" : "outline"}
                 className={
                   activeCategory === category
-                    ? "h-11 cursor-pointer rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 px-4 font-semibold text-white shadow-md shadow-orange-500/25 hover:opacity-90"
-                    : "h-11 cursor-pointer rounded-xl border-gray-200 bg-white px-4 font-semibold text-gray-700 shadow-sm hover:bg-orange-50 hover:text-orange-600"
+                    ? "h-11 text-[12px] font-extrabold cursor-pointer rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 px-4 text-white shadow-md shadow-orange-500/25 hover:opacity-90"
+                    : "h-11 text-[12px] font-extrabold cursor-pointer rounded-xl border-gray-200 bg-white px-4 text-gray-700 shadow-sm hover:bg-orange-50 hover:text-orange-600"
                 }
               >
                 {category}
@@ -74,9 +66,8 @@ const AllBooksLibrary = ({ books = [] }) => {
           </div>
         </div>
 
-        {/* Books grid */}
         {filteredBooks.length > 0 ? (
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredBooks.map((book) => (
               <BookCard key={book._id ?? book.title} book={book} />
             ))}
