@@ -22,6 +22,7 @@ const BookDetailsPage = async ({ params }) => {
           }
         }
   );
+  
   const book = await res.json();
 
   const {
