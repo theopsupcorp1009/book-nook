@@ -1,4 +1,5 @@
 import React from 'react';
+import ReturnBorrows from './ReturnBorrows';
 
 const AddedBorrowsCard = ({ myBorrows }) => {
   const isBorrows = Array.isArray(myBorrows) && myBorrows.length > 0;
@@ -57,25 +58,18 @@ const AddedBorrowsCard = ({ myBorrows }) => {
                 </div>
               </div>
 
-              {/* Borrow date */}
+            
               <span className="text-[15px] font-semibold text-slate-800">
-                {formatDate(borrow?.borrowDate ?? borrow?.createdAt)}
+                {formatDate(borrow?.borrowDate)}
               </span>
 
-              {/* Return deadline */}
+              
               <span className="text-[15px] font-semibold text-[#F59E0B]">
-                {formatDate(borrow?.returnDeadline ?? borrow?.dueDate)}
+                {formatDate(borrow?.returnDate)}
               </span>
 
-              {/* Action */}
-              <div className="flex items-center justify-end">
-                <button
-                  type="button"
-                  className="cursor-pointer rounded-full bg-[#10B981] px-5 py-2.5 text-[14px] font-bold text-white shadow-sm transition-colors hover:bg-[#059669]"
-                >
-                  Return Book
-                </button>
-              </div>
+       
+              <ReturnBorrows borrow={borrow} />
             </div>
           ))}
         </>
