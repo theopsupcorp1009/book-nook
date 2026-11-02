@@ -68,13 +68,12 @@ const BookDetailsPage = async ({ params }) => {
               {copiesLeft} Available {copiesLeft === 1 ? "Copy" : "Copies"}
             </Badge>
 
-            {/* {formattedDate && (
-        <span className="text-sm text-gray-400">
+            {formattedDate && (
+        <span className="text-[12px] text-gray-400 font-bold">
           Added {formattedDate}
         </span>
-      )} */}
+      )}
 
-            <span className="text-[12px] text-gray-400">Added date</span>
           </div>
 
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 lg:text-5xl">
