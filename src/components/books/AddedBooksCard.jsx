@@ -1,7 +1,7 @@
-import { PenLine, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import UpdateBookDialog from "./UpdateBookDialog";
 
-const AddedBooksCard = ({ myBooks }) => {
-  const isBooks = Array.isArray(myBooks) && myBooks.length > 0;
+const AddedBooksCard = ({ myBooks, categories }) => {
 
   const formatDate = (date) =>
     date
@@ -17,7 +17,7 @@ const AddedBooksCard = ({ myBooks }) => {
 
   return (
     <div className="overflow-hidden rounded-3xl bg-white shadow-lg shadow-slate-200/50">
-      {!isBooks ? (
+      {!myBooks>0 ? (
         <p className="px-6 py-16 text-center text-[15px] font-bold text-slate-400 lg:px-9">
           You haven&apos;t added any books yet.
         </p>
@@ -82,13 +82,9 @@ const AddedBooksCard = ({ myBooks }) => {
               </span>
 
           
-              <div className="flex items-center justify-end gap-5">
-                <button
-                  className="cursor-pointer text-blue-600 transition-colors hover:text-blue-700"
-                  aria-label="Edit book"
-                >
-                  <PenLine className="size-5" />
-                </button>
+              <div className="flex items-center justify-end">
+                <UpdateBookDialog book={book} categories={categories} />
+                  
                 <button
                   className="cursor-pointer text-red-500 transition-colors hover:text-red-600"
                   aria-label="Delete book"

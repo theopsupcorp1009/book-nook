@@ -9,16 +9,22 @@ import Link from 'next/link';
 
 const MyBooksPage = async() => {
 
-    const session = await auth.api.getSession({ headers: await headers() });
+const session = await auth.api.getSession({ 
+    headers: await headers() 
+  });
   if (!session) {
     redirect("/sign-in");
   }
 
   const { user } = session;
-  console.log(user);
+  
+  const categoryRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
+  const categories = await categoryRes.json();
   
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${user?.email}`);
   const myBooks = await res.json();
+
+ 
 
     return (
         <div className="bg-slate-50">
@@ -37,7 +43,7 @@ const MyBooksPage = async() => {
                 </div>
 
                 <div className="mt-8">
-                    <AddedBooksCard myBooks={myBooks}/>
+                    <AddedBooksCard myBooks={myBooks} categories={categories}/>
                 </div>
             </div>
         </div>

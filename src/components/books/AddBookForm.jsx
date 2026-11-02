@@ -29,7 +29,7 @@ const AddBookForm = ({ categories }) => {
       title: "",
       author: "",
       category: "Fiction",
-      totalCopies: "0",
+      totalCopies: 0,
       coverUrl: "",
       description: "",
     },
