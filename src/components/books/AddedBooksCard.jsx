@@ -1,5 +1,5 @@
-import { Trash2 } from "lucide-react";
 import UpdateBookDialog from "./UpdateBookDialog";
+import DeleteBooksDialog from "./DeleteBooksDialog";
 
 const AddedBooksCard = ({ myBooks, categories }) => {
 
@@ -85,12 +85,7 @@ const AddedBooksCard = ({ myBooks, categories }) => {
               <div className="flex items-center justify-end">
                 <UpdateBookDialog book={book} categories={categories} />
                   
-                <button
-                  className="cursor-pointer text-red-500 transition-colors hover:text-red-600"
-                  aria-label="Delete book"
-                >
-                  <Trash2 className="size-5" />
-                </button>
+                <DeleteBooksDialog book={book} />
               </div>
             </div>
           ))}
