@@ -15,7 +15,17 @@ const MyBorrowsPage = async() => {
     
       const { user } = session;
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/borrows/${user?.email}`)
+    const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  })
+
+  const token = jwtToken?.token;
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/borrows/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      }
+    })
     const myBorrows = await res.json();
 
 

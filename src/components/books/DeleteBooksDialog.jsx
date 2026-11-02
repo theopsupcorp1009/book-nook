@@ -13,22 +13,29 @@ import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const DeleteBooksDialog = ({ book }) => {
     const router = useRouter();
   const handleDeleteBook = async () => {
     try {
+        const {data, error} = await authClient.token();
+        const token = data?.token;
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${book._id}`,
         {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${token}`
+          }
         },
       );
 
-      const data = await res.json();
+      const resData = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Failed to delete book.");
+        throw new Error(resData.message || "Failed to delete book.");
       }
 
       toast.success("Book deleted successfully!");

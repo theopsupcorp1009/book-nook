@@ -17,7 +17,7 @@ const AddedBooksCard = ({ myBooks, categories }) => {
 
   return (
     <div className="overflow-hidden rounded-3xl bg-white shadow-lg shadow-slate-200/50">
-      {!myBooks>0 ? (
+      {!myBooks.length>0 ? (
         <p className="px-6 py-16 text-center text-[15px] font-bold text-slate-400 lg:px-9">
           You haven&apos;t added any books yet.
         </p>

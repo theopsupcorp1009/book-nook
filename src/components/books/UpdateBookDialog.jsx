@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { PenLine, X } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const controlClass =
   "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal text-slate-900 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20";
@@ -33,25 +34,29 @@ const UpdateBookDialog = ({ book, categories }) => {
     const updatedData = Object.fromEntries(formData.entries());
 
     try {
+      const { data, error } = await authClient.token();
+      const token = data?.token;
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${book._id}`,
         {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            authorization: `Bearer ${token}`
           },
           body: JSON.stringify(updatedData),
         },
       );
 
-      const data = await res.json();
+      const resData = await res.json();
 
       if (res.ok) {
         router.refresh();
         toast.success("Book updated successfully!");
         setOpen(false);
       } else {
-        toast.error(data.message || "Failed to update book.");
+        toast.error(resData.message || "Failed to update book.");
       }
     } catch (error) {
       console.error("Update book error:", error);

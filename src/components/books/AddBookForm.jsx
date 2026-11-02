@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -20,6 +20,8 @@ const controlClass =
   "h-11 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 text-sm font-normal text-gray-900 placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
 const AddBookForm = ({ categories }) => {
+
+  console.log(categories);
   const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
@@ -38,10 +40,16 @@ const AddBookForm = ({ categories }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const { data, error } = await authClient.token();
+      const token = data?.token;
+
       const formData = new FormData(e.target);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/books`, {
         method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
 
@@ -153,14 +161,24 @@ const AddBookForm = ({ categories }) => {
             <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
               Uploader Name
             </label>
-            <Input name="uploaderName" value={user?.name || ""} readOnly className="text-xs font-extrabold"/>
+            <Input
+              name="uploaderName"
+              value={user?.name || ""}
+              readOnly
+              className="text-xs font-extrabold"
+            />
           </div>
 
           <div className="flex flex-col gap-1">
             <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
               Uploader Email
             </label>
-            <Input name="uploaderEmail" value={user?.email || ""} readOnly className="text-xs font-extrabold"/>
+            <Input
+              name="uploaderEmail"
+              value={user?.email || ""}
+              readOnly
+              className="text-xs font-extrabold"
+            />
           </div>
         </div>
 

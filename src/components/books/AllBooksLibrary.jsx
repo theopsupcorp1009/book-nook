@@ -5,28 +5,32 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BookCard from "@/components/books/BookCard";
+import { useSearchParams } from "next/navigation";
 
 const AllBooksLibrary = ({ categories, books }) => {
   const [search, setSearch] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredBooks = books.filter(book=>{
-    if(activeCategory !== "All" && book.category!==activeCategory){
+  const searchParams = useSearchParams();
+  const selectedCategory = searchParams.get("category");
+  const [activeCategory, setActiveCategory] = useState(
+    selectedCategory || "All",
+  );
+
+  const filteredBooks = books.filter((book) => {
+    if (activeCategory !== "All" && book.category !== activeCategory) {
       return false;
     }
 
     const query = search.toLowerCase();
     return (
-      book.title?.toLowerCase().includes(query) 
-      || book.author?.toLowerCase().includes(query)
-    )
-
-  })
+      book.title?.toLowerCase().includes(query) ||
+      book.author?.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-slate-50 to-white px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-
         <div className="text-center">
           <h1 className="text-3xl font-extrabold text-gray-900">
             All Books Library

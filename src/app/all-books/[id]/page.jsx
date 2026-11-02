@@ -3,12 +3,24 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BorrowDialog from "@/components/books/BorrowDialog";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const BookDetailsPage = async ({ params }) => {
   const { id } = await params;
+  
+    const jwtToken = await auth.api.getToken({
+    headers: await headers(),
+  })
+
+  const token = jwtToken?.token;
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books/${id}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books/${id}`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+          }
+        }
   );
   const book = await res.json();
 

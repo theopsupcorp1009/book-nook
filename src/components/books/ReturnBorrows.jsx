@@ -1,24 +1,31 @@
-"use client"
+"use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
 
-const ReturnBorrows = ({borrow}) => {
+const ReturnBorrows = ({ borrow }) => {
   const router = useRouter();
   const handleReturnBook = async () => {
     try {
+      const { data, error } = await authClient.token();
+      const token = data?.token;
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/borrows/${borrow._id}`,
         {
           method: "DELETE",
+          headers: {
+            authorization: `Bearer ${token}`
+          }
         },
       );
 
-      const data = await res.json();
+      const resData = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.message || "Failed to return book.");
+        throw new Error(resData.message || "Failed to return book.");
       }
 
       toast.success("Book returned successfully!");

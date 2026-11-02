@@ -13,14 +13,13 @@ const AllBooks = async () => {
       throw new Error("Failed to fetch data");
     }
 
-    categories = await categoryRes.json();
+    const categoriesData = await categoryRes.json();
+    categories = categoriesData.map(category=>category.name);
     books = await bookRes.json();
     
   } catch (error) {
     console.error("Data fetch error:", error);
   }
-
-    
 
     return (
         <AllBooksLibrary categories={categories} books={books} />

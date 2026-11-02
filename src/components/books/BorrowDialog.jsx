@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useSession } from "@/lib/auth-client";
+import { authClient, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -33,6 +33,9 @@ const BorrowDialog = ({ book }) => {
     e.preventDefault();
 
     try {
+      const { data, error } = await authClient.token();
+      const token = data?.token;
+
       const formData = new FormData(e.target);
       const borrowData = Object.fromEntries(formData.entries());
 
@@ -40,6 +43,7 @@ const BorrowDialog = ({ book }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          authorization: `Bearer ${token}`
         },
         body: JSON.stringify(borrowData),
       });
@@ -77,7 +81,6 @@ const BorrowDialog = ({ book }) => {
         </DialogTitle>
 
         <form onSubmit={handleSubmit}>
-     
           <input type="hidden" name="bookId" value={book?._id || ""} />
           <input type="hidden" name="bookTitle" value={book?.title || ""} />
           <input type="hidden" name="bookImage" value={cover || ""} />
