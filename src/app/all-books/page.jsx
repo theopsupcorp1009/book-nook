@@ -1,4 +1,5 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 import AllBooksLibrary from '@/components/books/AllBooksLibrary';
 
 const AllBooks = async () => {
@@ -19,6 +20,7 @@ const AllBooks = async () => {
     
   } catch (error) {
     console.error("Data fetch error:", error);
+    notFound();
   }
 
     return (

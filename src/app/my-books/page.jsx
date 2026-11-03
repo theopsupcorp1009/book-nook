@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { redirect } from "next/navigation";
+import { redirect, notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 
@@ -24,13 +24,8 @@ const MyBooksPage = async () => {
   const token = jwtToken?.token;
 
   const categoryRes = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    },
-  );
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
+  if (!categoryRes.ok) notFound();
   const categoryData = await categoryRes.json();
   const categories = categoryData.map((category) => category.name);
 
@@ -43,6 +38,8 @@ const MyBooksPage = async () => {
     },
   );
   const myBooks = await res.json();
+  if (!res.ok) notFound();
+  console.log(myBooks);
 
   return (
     <div className="bg-slate-50">

@@ -1,23 +1,13 @@
 import AddBookForm from "@/components/books/AddBookForm";
-import { auth } from "@/lib/auth";
 import { CirclePlus } from "lucide-react";
-import { headers } from "next/headers";
 
 const AddBookPage = async () => {
   let categories = [];
 
-  const jwtToken = await auth.api.getToken({
-    headers: await headers(),
-  })
 
-  const token = jwtToken?.token;
 
   try {
-    const categoryRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      }
-    });
+    const categoryRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
 
     if (!categoryRes.ok) {
       throw new Error("Failed to fetch categories");

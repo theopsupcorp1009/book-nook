@@ -6,12 +6,15 @@ import { Field } from "@base-ui/react/field";
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
+import { useSearchParams } from "next/navigation";
 
 // Shared control styling (matches the shadcn Input base classes)
 const controlClass =
   "h-12 w-full rounded-xl border border-input bg-gray-50 px-4 text-[12px] transition-colors outline-none placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50";
 
 const SignInPage = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
   const handleSignIn = async (e) => {
     e.preventDefault();
 
@@ -21,7 +24,7 @@ const SignInPage = () => {
 
       const { data, error } = await authClient.signIn.email({
         ...user,
-        callbackURL: "/",
+        callbackURL: callbackUrl,
       });
 
       if (error) {

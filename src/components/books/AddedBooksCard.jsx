@@ -1,5 +1,6 @@
 import UpdateBookDialog from "./UpdateBookDialog";
 import DeleteBooksDialog from "./DeleteBooksDialog";
+import Link from "next/link";
 
 const AddedBooksCard = ({ myBooks, categories }) => {
 
@@ -49,7 +50,7 @@ const AddedBooksCard = ({ myBooks, categories }) => {
               className={`${gridCols} border-b border-slate-100 py-4 last:border-b-0`}
             >
               {/* Book details */}
-              <div className="flex min-w-0 items-center gap-4">
+              <Link href={`/all-books/${book._id}`} className="flex min-w-0 items-center gap-4">
                 <img
                   src={book?.coverUrl || book?.image}
                   alt={book?.title}
@@ -63,7 +64,7 @@ const AddedBooksCard = ({ myBooks, categories }) => {
                     By {book?.author}
                   </p>
                 </div>
-              </div>
+              </Link>
 
               <div>
                 <span className="inline-block rounded-full bg-slate-100 px-4 py-2 text-[13px] font-extrabold text-slate-700">

@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BorrowDialog from "@/components/books/BorrowDialog";
@@ -24,6 +25,10 @@ const BookDetailsPage = async ({ params }) => {
   );
   
   const book = await res.json();
+
+  if (!res.ok || !book?.title) {
+    notFound();
+  }
 
   const {
     title,
@@ -62,7 +67,7 @@ const BookDetailsPage = async ({ params }) => {
 
       <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-5 overflow-hidden rounded-3xl bg-white shadow-xl shadow-gray-200 sm:max-w-[500] sm:mx-auto md:max-w-full lg:max-w-full">
   
-        <div className="relative min-h-[100vh] shrink-0 self-stretch sm:w-full md:w-[330px] md:my-auto md:ml-[5%] md:max-h-[300px] md:rounded-3xl md:overflow-hidden lg:w-[500px]">
+        <div className="relative min-h-[100vh] shrink-0 self-stretch sm:w-full md:w-[330px] md:my-auto md:max-h-[300px] md:overflow-hidden lg:w-[500px]">
           <img
             src={cover}
             alt={title}

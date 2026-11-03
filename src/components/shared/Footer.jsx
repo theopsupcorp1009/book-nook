@@ -3,7 +3,7 @@ import { BookOpen } from "lucide-react";
 
 const quickLinks = [
     { label: "Home", href: "/" },
-    { label: "All Books", href: "/books" },
+    { label: "All Books", href: "/all-books" },
     { label: "Add Book", href: "/add-book" },
 ];
 

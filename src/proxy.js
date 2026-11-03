@@ -25,8 +25,11 @@ if (!user) {
 
 export const config = {
   matcher: [
-    '/add-books',
+    '/add-book',
     '/my-books',
+    '/my-books/:path',
     '/my-borrows',
+    '/my-borrows/:path',
+    '/profile'
   ],
 }
