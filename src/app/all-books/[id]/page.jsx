@@ -128,8 +128,8 @@ const BookDetailsPage = async ({ params }) => {
             </div>
           </div>
 
-          <div className="">
-            <BorrowDialog book={book} />
+          <div>
+            <BorrowDialog book={book} disabled={copiesLeft===0}/>
           </div>
         </div>
       </div>

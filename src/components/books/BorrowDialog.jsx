@@ -22,7 +22,7 @@ const borrowerLabelClass =
 const borrowerValueClass =
   "w-auto border-0 bg-transparent p-0 text-right text-[12px] font-extrabold text-slate-900 shadow-none focus-visible:ring-0";
 
-const BorrowDialog = ({ book }) => {
+const BorrowDialog = ({ book, disabled }) => {
   const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
@@ -66,12 +66,13 @@ const BorrowDialog = ({ book }) => {
     <Dialog>
       <div className="mt-8">
         <DialogTrigger
+          disabled = {disabled}
           render={
-            <Button className="h-14 w-full cursor-pointer rounded-2xl bg-[#F59E0B] text-[16px] font-extrabold text-white shadow-lg shadow-orange-500/25 hover:bg-[#E38508]" />
+            <Button disabled={disabled} className="h-14 w-full cursor-pointer rounded-2xl bg-[#F59E0B] text-[16px] font-extrabold text-white shadow-lg shadow-orange-500/25 hover:bg-[#E38508]" />
           }
         >
           <Bookmark data-icon="inline-start" className="size-6" />
-          Borrow This Book
+          {disabled ? 'No copies available' : 'Borrow This Book'}
         </DialogTrigger>
       </div>
 
