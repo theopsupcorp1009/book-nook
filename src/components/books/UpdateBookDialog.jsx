@@ -14,10 +14,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { PenLine, X } from "lucide-react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { authClient } from "@/lib/auth-client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const controlClass =
-  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-sm font-normal text-slate-900 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20";
+  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-[12px] font-normal text-slate-900 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20";
 
 const labelClass =
   "mb-1.5 block text-[12px] font-extrabold tracking-wide text-slate-700 uppercase";
@@ -34,8 +34,7 @@ const UpdateBookDialog = ({ book, categories }) => {
     const updatedData = Object.fromEntries(formData.entries());
 
     try {
-      const { data, error } = await authClient.token();
-      const token = data?.token;
+      const token = await getTokenFromClient();
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${book._id}`,
@@ -79,7 +78,7 @@ const UpdateBookDialog = ({ book, categories }) => {
         className="max-h-[90vh] gap-0 overflow-y-auto rounded-[28px] border border-slate-100 bg-white p-6 shadow-2xl sm:max-w-[640px] sm:p-8"
       >
         <div className="mb-7 flex items-center justify-between">
-          <DialogTitle className="text-[22px] font-extrabold tracking-tight text-slate-900">
+          <DialogTitle className="text-[20px] font-extrabold tracking-tight text-slate-900">
             Edit Book Details
           </DialogTitle>
 
@@ -185,7 +184,7 @@ const UpdateBookDialog = ({ book, categories }) => {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-[52px] cursor-pointer rounded-2xl border-slate-200 text-sm font-bold text-slate-600 hover:bg-slate-50"
+                  className="h-10 cursor-pointer rounded-2xl border-slate-200 text-[12px] font-bold text-slate-600 hover:bg-slate-50"
                 >
                   Cancel
                 </Button>
@@ -194,7 +193,7 @@ const UpdateBookDialog = ({ book, categories }) => {
 
             <Button
               type="submit"
-              className="h-[52px] cursor-pointer rounded-2xl bg-[#F59E0B] text-sm font-extrabold text-white shadow-md shadow-orange-500/20 hover:bg-[#E38508]"
+              className="h-10 cursor-pointer rounded-2xl bg-[#F59E0B] text-[12px] font-extrabold text-white shadow-md shadow-orange-500/20 hover:bg-[#E38508]"
             >
               Save Changes
             </Button>

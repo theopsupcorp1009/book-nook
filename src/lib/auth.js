@@ -8,6 +8,10 @@ const db = client.db("bookNook-db");
 
 export const auth = betterAuth({
   baseURL: process.env.BETTER_AUTH_URL, 
+   trustedOrigins: [
+    "http://localhost:3000",
+    "http://192.168.0.106:3000",
+  ],
   database: mongodbAdapter(db, {
     client,
   }),

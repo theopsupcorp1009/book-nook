@@ -1,5 +1,6 @@
-import React from 'react';
-import ReturnBorrows from './ReturnBorrows';
+import React from "react";
+import ReturnBorrows from "./ReturnBorrows";
+import Image from "next/image";
 
 const AddedBorrowsCard = ({ myBorrows }) => {
   const isBorrows = Array.isArray(myBorrows) && myBorrows.length > 0;
@@ -23,18 +24,17 @@ const AddedBorrowsCard = ({ myBorrows }) => {
         </p>
       ) : (
         <>
-
           <div className={`${gridCols} border-b border-slate-100 py-5`}>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Book Title
             </span>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Borrow Date
             </span>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Return Deadline
             </span>
-            <span className="text-right text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-right text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Action
             </span>
           </div>
@@ -46,29 +46,28 @@ const AddedBorrowsCard = ({ myBorrows }) => {
             >
               {/* Book details */}
               <div className="flex min-w-0 items-center gap-4">
-                <img
+                <Image
                   src={borrow?.bookImage}
-                  alt={borrow?.bookTitle}
-                  className="size-14 shrink-0 rounded-xl object-cover"
+                  alt={borrow?.bookTitle || "Book cover"}
+                  width={56}
+                  height={56}
+                  className="size-14 rounded-xl object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-[16px] font-extrabold text-slate-900">
+                  <p className="truncate text-[12px] font-extrabold text-slate-900">
                     {borrow?.bookTitle}
                   </p>
                 </div>
               </div>
 
-            
-              <span className="text-[15px] font-semibold text-slate-800">
+              <span className="text-[12px] font-semibold text-slate-800">
                 {formatDate(borrow?.borrowDate)}
               </span>
 
-              
-              <span className="text-[15px] font-semibold text-[#F59E0B]">
+              <span className="text-[12px] font-semibold text-[#F59E0B]">
                 {formatDate(borrow?.returnDate)}
               </span>
 
-       
               <ReturnBorrows borrow={borrow} />
             </div>
           ))}

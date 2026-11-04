@@ -14,13 +14,13 @@ import { Button } from "../ui/button";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const DeleteBooksDialog = ({ book }) => {
     const router = useRouter();
   const handleDeleteBook = async () => {
     try {
-        const {data, error} = await authClient.token();
-        const token = data?.token;
+        const token = await getTokenFromClient();
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${book._id}`,

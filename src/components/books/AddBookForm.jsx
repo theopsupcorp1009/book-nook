@@ -12,16 +12,16 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { authClient, useSession } from "@/lib/auth-client";
+import { useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const controlClass =
-  "h-11 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 text-sm font-normal text-gray-900 placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+  "h-11 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 text-[12px] font-normal text-gray-900 placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
 const AddBookForm = ({ categories }) => {
 
-  console.log(categories);
   const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
@@ -40,9 +40,8 @@ const AddBookForm = ({ categories }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await authClient.token();
-      const token = data?.token;
-
+      
+      const token = await getTokenFromClient();
       const formData = new FormData(e.target);
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/books`, {
@@ -72,7 +71,7 @@ const AddBookForm = ({ categories }) => {
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
               Book Title
             </label>
             <Input
@@ -84,7 +83,7 @@ const AddBookForm = ({ categories }) => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
               Author Name
             </label>
             <Input
@@ -98,7 +97,7 @@ const AddBookForm = ({ categories }) => {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
               Category
             </label>
             <Select name="category" defaultValue="Fiction">
@@ -116,7 +115,7 @@ const AddBookForm = ({ categories }) => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
               Total Copies
             </label>
             <Input
@@ -131,7 +130,7 @@ const AddBookForm = ({ categories }) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
             Book Cover Image
           </label>
 
@@ -145,7 +144,7 @@ const AddBookForm = ({ categories }) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-bold tracking-wide text-gray-900 uppercase">
+          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
             Short Description
           </label>
           <Textarea
@@ -158,33 +157,33 @@ const AddBookForm = ({ categories }) => {
 
         <div className="grid gap-4 rounded-xl bg-gray-100 p-4 sm:grid-cols-2 sm:p-6">
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
+            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 uppercase">
               Uploader Name
             </label>
             <Input
               name="uploaderName"
               value={user?.name || ""}
               readOnly
-              className="text-xs font-extrabold"
+              className="text-[12px] font-extrabold"
             />
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-semibold tracking-wide text-gray-500 uppercase">
+            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 uppercase">
               Uploader Email
             </label>
             <Input
               name="uploaderEmail"
               value={user?.email || ""}
               readOnly
-              className="text-xs font-extrabold"
+              className="text-[12px] font-extrabold"
             />
           </div>
         </div>
 
         <Button
           type="submit"
-          className="cursor-pointer h-12 w-full rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-sm font-bold text-white shadow-md shadow-orange-500/25 hover:opacity-90"
+          className="cursor-pointer h-10 w-full rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 text-[12px] font-bold text-white shadow-md shadow-orange-500/25 hover:opacity-90"
         >
           Add Book to Library
         </Button>

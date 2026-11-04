@@ -52,26 +52,28 @@ const AllBooksLibrary = ({ categories, books }) => {
             />
           </div>
 
-          <div className="flex gap-2">
-            {["All", ...categories].map((category) => (
-              <Button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                variant={activeCategory === category ? "default" : "outline"}
-                className={
-                  activeCategory === category
-                    ? "h-11 text-[12px] font-extrabold cursor-pointer rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 px-4 text-white shadow-md shadow-orange-500/25 hover:opacity-90"
-                    : "h-11 text-[12px] font-extrabold cursor-pointer rounded-xl border-gray-200 bg-white px-4 text-gray-700 shadow-sm hover:bg-orange-50 hover:text-orange-600"
-                }
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
+          <div className="w-full srollbar overflow-x-auto py-5 md:py-0 md:w-auto md:overflow-x-visible md:no-scrollbar">
+            <div className="flex min-w-max gap-2">
+              {["All", ...categories].map((category) => (
+                <Button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  variant={activeCategory === category ? "default" : "outline"}
+                  className={
+                    activeCategory === category
+                      ? "h-10 sm:h-11 text-[12px] font-extrabold cursor-pointer rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 px-4 text-white shadow-md shadow-orange-500/25 hover:opacity-90"
+                      : "h-10 sm:h-11 text-[12px] font-extrabold cursor-pointer rounded-xl border-gray-200 bg-white px-4 text-gray-700 shadow-sm hover:bg-orange-50 hover:text-orange-600"
+                  }
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+      </div>
         </div>
 
         {filteredBooks.length > 0 ? (
-          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 md:mt-10 lg:mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredBooks.map((book) => (
               <BookCard key={book._id ?? book.title} book={book} />
             ))}

@@ -1,9 +1,9 @@
 import UpdateBookDialog from "./UpdateBookDialog";
 import DeleteBooksDialog from "./DeleteBooksDialog";
 import Link from "next/link";
+import Image from "next/image";
 
 const AddedBooksCard = ({ myBooks, categories }) => {
-
   const formatDate = (date) =>
     date
       ? new Date(date).toLocaleDateString("en-US", {
@@ -18,74 +18,76 @@ const AddedBooksCard = ({ myBooks, categories }) => {
 
   return (
     <div className="overflow-hidden rounded-3xl bg-white shadow-lg shadow-slate-200/50">
-      {!myBooks.length>0 ? (
+      {!myBooks.length > 0 ? (
         <p className="px-6 py-16 text-center text-[15px] font-bold text-slate-400 lg:px-9">
           You haven&apos;t added any books yet.
         </p>
       ) : (
         <>
-  
           <div className={`${gridCols} border-b border-slate-100 py-5`}>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Book Details
             </span>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Category
             </span>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Available Copies
             </span>
-            <span className="text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Date Added
             </span>
-            <span className="text-right text-[13px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-right text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
               Actions
             </span>
           </div>
 
-      
           {myBooks.map((book) => (
             <div
               key={book?._id}
               className={`${gridCols} border-b border-slate-100 py-4 last:border-b-0`}
             >
               {/* Book details */}
-              <Link href={`/all-books/${book._id}`} className="flex min-w-0 items-center gap-4">
-                <img
+              <Link
+                href={`/all-books/${book._id}`}
+                className="flex min-w-0 items-center gap-4"
+              >
+                <Image
                   src={book?.coverUrl || book?.image}
-                  alt={book?.title}
-                  className="size-14 shrink-0 rounded-xl object-cover"
+                  alt={book?.title || "Book cover"}
+                  width={56}
+                  height={56}
+                  className="size-14 rounded-xl object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-[16px] font-extrabold text-slate-900">
+                  <p className="truncate text-[14px] font-extrabold text-slate-900">
                     {book?.title}
                   </p>
-                  <p className="truncate text-[13px] text-slate-400">
+                  <p className="truncate text-[12px] text-slate-400">
                     By {book?.author}
                   </p>
                 </div>
               </Link>
 
               <div>
-                <span className="inline-block rounded-full bg-slate-100 px-4 py-2 text-[13px] font-extrabold text-slate-700">
+                <span className="inline-block rounded-full bg-slate-100 px-4 py-2 text-[12px] font-extrabold text-slate-700">
                   {book?.category}
                 </span>
               </div>
 
               {/* Available copies */}
-              <span className="text-[15px] font-semibold text-slate-800">
+              <span className="text-[14px] font-semibold text-slate-800">
                 {Number(book?.totalCopies) || 0} copies
               </span>
 
               {/* Date added */}
-              <span className="text-[15px] text-slate-400">
+              <span className="text-[12px] text-slate-400">
                 {formatDate(book?.createdAt)}
               </span>
 
-          
               <div className="flex items-center justify-end">
                 <UpdateBookDialog book={book} categories={categories} />
-                  
+
                 <DeleteBooksDialog book={book} />
               </div>
             </div>

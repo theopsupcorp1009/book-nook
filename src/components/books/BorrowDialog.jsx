@@ -14,6 +14,7 @@ import {
 import { authClient, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const borrowerRowClass =
   "flex items-center justify-between rounded-xl bg-slate-50 p-3";
@@ -33,8 +34,7 @@ const BorrowDialog = ({ book, disabled }) => {
     e.preventDefault();
 
     try {
-      const { data, error } = await authClient.token();
-      const token = data?.token;
+      const token = await getTokenFromClient();
 
       const formData = new FormData(e.target);
       const borrowData = Object.fromEntries(formData.entries());
@@ -68,7 +68,7 @@ const BorrowDialog = ({ book, disabled }) => {
         <DialogTrigger
           disabled = {disabled}
           render={
-            <Button disabled={disabled} className="h-14 w-full cursor-pointer rounded-2xl bg-[#F59E0B] text-[16px] font-extrabold text-white shadow-lg shadow-orange-500/25 hover:bg-[#E38508]" />
+            <Button disabled={disabled} className="h-12 w-full cursor-pointer rounded-xl bg-[#F59E0B] text-[14px] font-extrabold text-white shadow-lg shadow-orange-500/25 hover:bg-[#E38508]" />
           }
         >
           <Bookmark data-icon="inline-start" className="size-6" />

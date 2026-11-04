@@ -4,17 +4,12 @@ import { notFound } from "next/navigation";
 import { ChevronLeft } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import BorrowDialog from "@/components/books/BorrowDialog";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const BookDetailsPage = async ({ params }) => {
   const { id } = await params;
   
-    const jwtToken = await auth.api.getToken({
-    headers: await headers(),
-  })
-
-  const token = jwtToken?.token;
+  const token = await getTokenFromServer();
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books/${id}`, {
@@ -56,18 +51,18 @@ const BookDetailsPage = async ({ params }) => {
     : null;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-7xl px-5 md:px-20 lg:px-30 py-8">
       <Link
         href="/all-books"
-        className="mb-8 inline-flex items-center gap-1.5 text-[15px] font-bold text-slate-700 transition-colors hover:text-orange-600"
+        className="mb-8 inline-flex items-center gap-1.5 text-[12px] font-bold text-slate-700 transition-colors hover:text-orange-600"
       >
         <ChevronLeft className="size-5" />
         Back to All Books
       </Link>
 
-      <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-5 overflow-hidden rounded-3xl bg-white shadow-xl shadow-gray-200 sm:max-w-[500] sm:mx-auto md:max-w-full lg:max-w-full">
+      <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-5 overflow-hidden rounded-3xl bg-white shadow-xl shadow-gray-200 sm:max-w-[500] sm:mx-auto md:max-w-full lg:max-w-full h-full md:h-[85vh] lg:h-[80vh]">
   
-        <div className="relative min-h-[100vh] shrink-0 self-stretch sm:w-full md:w-[330px] md:my-auto md:max-h-[300px] md:overflow-hidden lg:w-[500px]">
+        <div className="relative h-[70vh] shrink-0 self-stretch sm:w-full md:w-[300px] md:my-auto md:h-full md:overflow-hidden lg:w-[400px]">
           <img
             src={cover}
             alt={title}
@@ -94,19 +89,19 @@ const BookDetailsPage = async ({ params }) => {
 
           </div>
 
-          <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 lg:text-5xl">
+          <h1 className="mt-4 text-[24px] font-extrabold tracking-tight text-slate-900 lg:text-5xl">
             {title}
           </h1>
 
-          <p className="mt-2 text-[16px] font-bold text-orange-600">
+          <p className="mt-2 text-[14px] font-bold text-orange-600">
             By {author}
           </p>
 
-          <h2 className="mt-8 text-[14px] font-extrabold tracking-wide text-slate-900 uppercase">
+          <h2 className="mt-8 text-[12px] font-extrabold tracking-wide text-slate-900 uppercase">
             Description
           </h2>
 
-          <p className="mt-3 text-[13px] text-justify leading-relaxed text-gray-500">
+          <p className="mt-3 text-[12px] text-justify leading-relaxed text-gray-500">
             {description}
           </p>
 
@@ -116,7 +111,7 @@ const BookDetailsPage = async ({ params }) => {
             </div>
 
             <div className="min-w-0">
-              <p className="text-[12px] font-bold text-slate-900">
+              <p className="text-[12px] font-extrabold text-slate-900">
                 Uploaded by {uploaderName || "BookNook Curator"}
               </p>
 

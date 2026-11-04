@@ -44,7 +44,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5">
           <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 shadow-md shadow-orange-500/25">
             <BookOpen className="size-5 text-white" strokeWidth={2.5} />
@@ -67,7 +67,7 @@ const Navbar = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600"
+                      className="rounded-full px-4 py-2 text-[14px] font-semibold text-gray-700 transition-colors hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600"
                     >
                       {link.label}
                     </Link>
@@ -77,7 +77,7 @@ const Navbar = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600"
+                      className="rounded-full px-4 py-2 text-[14px] font-semibold text-gray-700 transition-colors hover:text-orange-600 focus:bg-orange-100/70 focus:text-orange-600"
                     >
                       {link.label}
                     </Link>

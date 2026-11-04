@@ -6,6 +6,7 @@ import { headers } from "next/headers";
 import { redirect, notFound } from "next/navigation";
 import React from "react";
 import Link from "next/link";
+import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const MyBooksPage = async () => {
   const session = await auth.api.getSession({
@@ -17,11 +18,7 @@ const MyBooksPage = async () => {
 
   const { user } = session;
 
-  const jwtToken = await auth.api.getToken({
-    headers: await headers(),
-  });
-
-  const token = jwtToken?.token;
+  const token = await getTokenFromServer();
 
   const categoryRes = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
@@ -45,16 +42,16 @@ const MyBooksPage = async () => {
     <div className="bg-slate-50">
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h2 className="text-[34px] font-extrabold text-slate-900">
+          <div className='-space-y-2'>
+            <h2 className="text-[26px] font-[900] text-slate-900">
               My Added Books
             </h2>
-            <p className="mt-1 text-[15px] text-slate-500">
+            <p className="mt-1 text-[12px] text-slate-500">
               Manage, update, or remove books you have published to BookNook.
             </p>
           </div>
           <Link href="/add-book">
-            <Button className="h-11 cursor-pointer rounded-full bg-[#F59E0B] px-5 text-[14px] font-extrabold text-white shadow-md shadow-orange-500/25 hover:bg-[#E38508]">
+            <Button className="h-11 cursor-pointer rounded-xl bg-[#F59E0B] px-5 text-[14px] font-extrabold text-white shadow-md shadow-orange-500/25 hover:bg-[#E38508]">
               <CirclePlus data-icon="inline-start" className="size-5" />
               Add Another Book
             </Button>
