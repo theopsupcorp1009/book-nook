@@ -11,7 +11,7 @@ const Footer = () => {
     const year = new Date().getFullYear();
 
     return (
-        <div className="bg-white">
+        <div>
       
             <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
                 <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
@@ -24,11 +24,11 @@ const Footer = () => {
                                     strokeWidth={2.5}
                                 />
                             </span>
-                            <span className="text-2xl font-extrabold tracking-tight text-gray-900">
+                            <span className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
                                 BookNook
                             </span>
                         </Link>
-                        <p className="mt-5 max-w-sm text-[12px] leading-relaxed text-gray-500">
+                        <p className="mt-5 max-w-sm text-[12px] leading-relaxed text-gray-500 dark:text-gray-400">
                             BookNook is a community online library platform
                             where readers borrow, discover, and share
                             incredible literary works effortlessly.
@@ -36,7 +36,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h4 className="text-base font-bold tracking-wide text-gray-900 uppercase">
+                        <h4 className="text-base font-bold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
                             Quick Links
                         </h4>
                         <ul className="mt-5">
@@ -44,7 +44,7 @@ const Footer = () => {
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}
-                                        className="text-[12px] text-gray-500 transition-colors hover:text-orange-600"
+                                        className="text-[12px] text-gray-500 dark:text-gray-400 transition-colors hover:text-orange-600 dark:hover:text-orange-400"
                                     >
                                         {link.label}
                                     </Link>
@@ -55,7 +55,7 @@ const Footer = () => {
 
               
                     <div>
-                        <h4 className="text-base font-bold tracking-wide text-gray-900 uppercase">
+                        <h4 className="text-base font-bold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
                             Connect With Us
                         </h4>
                         <a
@@ -63,7 +63,7 @@ const Footer = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label="Follow us on X"
-                            className="mt-5 flex size-10 w-fit items-center justify-center rounded-lg bg-gray-100 transition-colors hover:bg-gray-200"
+                            className="mt-5 flex size-10 w-fit items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800 transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
                         >
                            
                             <img
@@ -72,11 +72,11 @@ const Footer = () => {
                                 className="size-5"
                             />
                         </a>
-                        <p className="mt-5 text-[12px] text-gray-500">
+                        <p className="mt-5 text-[12px] text-gray-500 dark:text-gray-400">
                             Support:{" "}
                             <a
                                 href="mailto:support@booknook.com"
-                                className="text-gray-500 hover:text-orange-600"
+                                className="text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400"
                             >
                                 support@booknook.com
                             </a>
@@ -85,9 +85,9 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="border-t border-gray-100">
+            <div className="border-t border-gray-100 dark:border-gray-800">
                 <div className="mx-auto max-w-7xl px-4 py-5 text-center sm:px-6 lg:px-8">
-                    <p className="text-[12px] text-gray-400">
+                    <p className="text-[12px] text-gray-400 dark:text-gray-500">
                         © {year} BookNook Digital Library System. All rights
                         reserved.
                     </p>

@@ -64,7 +64,7 @@ const Banner = () => {
         >
           {banners.map((banner, index) => (
             <SwiperSlide key={index}>
-              <div className="relative h-[600px] overflow-hidden rounded-3xl p-10 text-center md:text-left lg:text-left">
+              <div className="relative h-[550px] overflow-hidden rounded-3xl p-10 text-center md:text-left lg:text-left">
 
                 
                 <div
@@ -90,7 +90,7 @@ const Banner = () => {
 
                   <Link
                     href="/all-books"
-                    className="group mt-8 flex w-fit items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-bold text-gray-900 shadow-lg transition-colors hover:bg-gray-100 mx-auto md:mx-0 lg:mx-0"
+                    className="group mx-auto mt-8 flex w-fit items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-bold text-gray-900 shadow-lg transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 md:mx-0 lg:mx-0"
                   >
                     Browse Books
                     <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />

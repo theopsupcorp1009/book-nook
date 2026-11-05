@@ -17,27 +17,27 @@ const AddedBooksCard = ({ myBooks, categories }) => {
     "grid grid-cols-[minmax(0,2.4fr)_1fr_1.1fr_1.1fr_minmax(90px,auto)] items-center gap-4 px-6 lg:px-9";
 
   return (
-    <div className="overflow-hidden rounded-3xl bg-white shadow-lg shadow-slate-200/50">
+    <div className="overflow-hidden rounded-3xl bg-white dark:bg-gray-900 shadow-lg shadow-slate-200/50 dark:shadow-black/40">
       {!myBooks.length > 0 ? (
-        <p className="px-6 py-16 text-center text-[15px] font-bold text-slate-400 lg:px-9">
+        <p className="px-6 py-16 text-center text-[15px] font-bold text-slate-400 dark:text-gray-500 dark:text-gray-500 lg:px-9">
           You haven&apos;t added any books yet.
         </p>
       ) : (
         <>
-          <div className={`${gridCols} border-b border-slate-100 py-5`}>
-            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
+          <div className={`${gridCols} border-b border-slate-100 dark:border-gray-800 py-5`}>
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
               Book Details
             </span>
-            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
               Category
             </span>
-            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
               Available Copies
             </span>
-            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
               Date Added
             </span>
-            <span className="text-right text-[12px] font-extrabold tracking-wide text-slate-400 uppercase">
+            <span className="text-right text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
               Actions
             </span>
           </div>
@@ -45,7 +45,7 @@ const AddedBooksCard = ({ myBooks, categories }) => {
           {myBooks.map((book) => (
             <div
               key={book?._id}
-              className={`${gridCols} border-b border-slate-100 py-4 last:border-b-0`}
+              className={`${gridCols} border-b border-slate-100 dark:border-gray-800 py-4 last:border-b-0`}
             >
               {/* Book details */}
               <Link
@@ -60,28 +60,28 @@ const AddedBooksCard = ({ myBooks, categories }) => {
                   className="size-14 rounded-xl object-cover"
                 />
                 <div className="min-w-0">
-                  <p className="truncate text-[14px] font-extrabold text-slate-900">
+                  <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
                     {book?.title}
                   </p>
-                  <p className="truncate text-[12px] text-slate-400">
+                  <p className="truncate text-[12px] text-slate-400 dark:text-gray-500">
                     By {book?.author}
                   </p>
                 </div>
               </Link>
 
               <div>
-                <span className="inline-block rounded-full bg-slate-100 px-4 py-2 text-[12px] font-extrabold text-slate-700">
+                <span className="inline-block rounded-full bg-slate-100 dark:bg-gray-800 px-4 py-2 text-[12px] font-extrabold text-slate-700 dark:text-gray-300">
                   {book?.category}
                 </span>
               </div>
 
               {/* Available copies */}
-              <span className="text-[14px] font-semibold text-slate-800">
+              <span className="text-[14px] font-semibold text-slate-800 dark:text-gray-300">
                 {Number(book?.totalCopies) || 0} copies
               </span>
 
               {/* Date added */}
-              <span className="text-[12px] text-slate-400">
+              <span className="text-[12px] text-slate-400 dark:text-gray-500">
                 {formatDate(book?.createdAt)}
               </span>
 

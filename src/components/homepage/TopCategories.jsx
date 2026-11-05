@@ -40,10 +40,10 @@ const TopCategories = async () => {
     <section className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900">
+          <h2 className="text-4xl font-extrabold text-gray-900 dark:text-gray-100">
             Top Categories
           </h2>
-          <p className="mt-4 text-base text-gray-500">
+          <p className="mt-4 text-base text-gray-500 dark:text-gray-400">
             Browse books by your favorite subject matter.
           </p>
         </div>
@@ -56,15 +56,15 @@ const TopCategories = async () => {
               <Link
                href={`/all-books?category=${encodeURIComponent(name)}`}
                 key={name}
-                className="flex flex-col items-center rounded-2xl bg-white px-6 py-10 text-center shadow-sm ring-1 ring-gray-100 hover:border hover:border-green-400"
+                className="flex flex-col items-center rounded-2xl bg-white dark:bg-gray-900 px-6 py-10 text-center shadow-sm ring-1 ring-gray-100 dark:ring-gray-800 hover:border hover:border-green-400 dark:hover:border-green-500"
               >
-                <span className="flex size-14 items-center justify-center rounded-2xl bg-orange-100">
+                <span className="flex size-14 items-center justify-center rounded-2xl bg-orange-100 dark:bg-orange-500/15">
                   <Icon className="size-7 text-orange-500" strokeWidth={2} />
                 </span>
 
-                <h3 className="mt-6 text-xl font-bold text-gray-900">{name}</h3>
+                <h3 className="mt-6 text-xl font-bold text-gray-900 dark:text-gray-100">{name}</h3>
 
-                <p className="mt-2 text-sm text-gray-400">
+                <p className="mt-2 text-sm text-gray-400 dark:text-gray-500">
                   {totalBookCount}+ Books
                 </p>
               </Link>

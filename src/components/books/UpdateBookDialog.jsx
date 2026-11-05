@@ -17,10 +17,10 @@ import { useRouter } from "next/navigation";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const controlClass =
-  "h-12 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 text-[12px] font-normal text-slate-900 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20";
+  "h-12 w-full rounded-xl border border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800 px-4 text-[12px] font-normal text-slate-900 dark:text-gray-100 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20";
 
 const labelClass =
-  "mb-1.5 block text-[12px] font-extrabold tracking-wide text-slate-700 uppercase";
+  "mb-1.5 block text-[12px] font-extrabold tracking-wide text-slate-700 dark:text-gray-300 uppercase";
 
 const UpdateBookDialog = ({ book, categories }) => {
   const router = useRouter();
@@ -75,10 +75,10 @@ const UpdateBookDialog = ({ book, categories }) => {
 
       <DialogContent
         showCloseButton={false}
-        className="max-h-[90vh] gap-0 overflow-y-auto rounded-[28px] border border-slate-100 bg-white p-6 shadow-2xl sm:max-w-[640px] sm:p-8"
+        className="max-h-[90vh] gap-0 overflow-y-auto rounded-[28px] border border-slate-100 dark:border-gray-800 bg-white dark:bg-gray-900 p-6 shadow-2xl sm:max-w-[640px] sm:p-8"
       >
         <div className="mb-7 flex items-center justify-between">
-          <DialogTitle className="text-[20px] font-extrabold tracking-tight text-slate-900">
+          <DialogTitle className="text-[20px] font-extrabold tracking-tight text-slate-900 dark:text-gray-100">
             Edit Book Details
           </DialogTitle>
 
@@ -86,7 +86,7 @@ const UpdateBookDialog = ({ book, categories }) => {
             render={
               <button
                 type="button"
-                className="cursor-pointer rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                className="cursor-pointer rounded-full p-1 text-slate-400 dark:text-gray-500 transition hover:bg-slate-100 dark:hover:bg-gray-800 hover:text-slate-700 dark:hover:text-gray-300"
                 aria-label="Close dialog"
               >
                 <X className="size-6" />
@@ -152,7 +152,7 @@ const UpdateBookDialog = ({ book, categories }) => {
               name="category"
               defaultValue={book?.category}
               required
-              className={`${controlClass} cursor-pointer`}
+              className={`${controlClass} cursor-pointer dark:bg-gray-800`}
             >
               {categories.map((category, index) => (
                 <option key={index} value={category}>
@@ -173,7 +173,7 @@ const UpdateBookDialog = ({ book, categories }) => {
               defaultValue={book?.description}
               required
               rows={3}
-              className="min-h-[92px] w-full resize-y rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20"
+              className="min-h-[92px] w-full resize-y rounded-xl border border-slate-200 dark:border-gray-700 bg-slate-50 dark:bg-gray-800 px-4 py-3 text-sm text-slate-900 dark:text-gray-100 shadow-none focus-visible:border-orange-400 focus-visible:ring-2 focus-visible:ring-orange-400/20"
               placeholder="Enter book description"
             />
           </div>
@@ -184,7 +184,7 @@ const UpdateBookDialog = ({ book, categories }) => {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-10 cursor-pointer rounded-2xl border-slate-200 text-[12px] font-bold text-slate-600 hover:bg-slate-50"
+                  className="h-10 cursor-pointer rounded-2xl border-slate-200 dark:border-gray-700 text-[12px] font-bold text-slate-600 dark:text-gray-400 hover:bg-slate-50 dark:hover:bg-gray-800"
                 >
                   Cancel
                 </Button>

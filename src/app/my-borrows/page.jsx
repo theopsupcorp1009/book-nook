@@ -29,11 +29,11 @@ const MyBorrowsPage = async() => {
 
 
     return (
-        <div className="bg-slate-50">
+        <div className="bg-slate-50 dark:bg-gray-950">
             <div className="mx-auto max-w-7xl px-4 py-10">
                 <div className='-space-y-2'>
-                    <h2 className="text-[26px] font-extrabold text-slate-900">My Borrowed Books</h2>
-                    <p className="mt-1 text-[12px] text-slate-500">Track active book loans and return titles when you finish reading.</p>
+                    <h2 className="text-[26px] font-extrabold text-slate-900 dark:text-gray-100">My Borrowed Books</h2>
+                    <p className="mt-1 text-[12px] text-slate-500 dark:text-gray-400">Track active book loans and return titles when you finish reading.</p>
                 </div>
                 <div className="mt-8">
                     <AddedBorrowsCard myBorrows={myBorrows}/>

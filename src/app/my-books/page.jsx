@@ -39,14 +39,14 @@ const MyBooksPage = async () => {
   console.log(myBooks);
 
   return (
-    <div className="bg-slate-50">
+    <div className="bg-slate-50 dark:bg-gray-950">
       <div className="mx-auto max-w-7xl px-4 py-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className='-space-y-2'>
-            <h2 className="text-[26px] font-[900] text-slate-900">
+            <h2 className="text-[26px] font-[900] text-slate-900 dark:text-gray-100">
               My Added Books
             </h2>
-            <p className="mt-1 text-[12px] text-slate-500">
+            <p className="mt-1 text-[12px] text-slate-500 dark:text-gray-400">
               Manage, update, or remove books you have published to BookNook.
             </p>
           </div>

@@ -64,17 +64,17 @@ const DeleteBooksDialog = ({ book }) => {
         className="gap-5 rounded-3xl p-8 text-center sm:max-w-md"
       >
      
-        <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-red-100">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-red-100 dark:bg-red-950/50">
           <Trash2 className="size-7 text-red-500" />
         </div>
 
-        <DialogTitle className="text-[26px] font-extrabold text-slate-900">
+        <DialogTitle className="text-[26px] font-extrabold text-slate-900 dark:text-gray-100">
           Delete Book?
         </DialogTitle>
 
-        <DialogDescription className="text-[15px] leading-relaxed text-slate-500">
+        <DialogDescription className="text-[15px] leading-relaxed text-slate-500 dark:text-gray-400">
           Are you sure you want to delete{" "}
-          <span className="font-extrabold text-slate-900">
+          <span className="font-extrabold text-slate-900 dark:text-gray-100">
             &quot;{book?.title}&quot;
           </span>
           ? This action cannot be undone.
@@ -86,7 +86,7 @@ const DeleteBooksDialog = ({ book }) => {
               <Button
                 type="button"
                 variant="outline"
-                className="h-12 cursor-pointer rounded-xl border-slate-200 bg-white text-[15px] font-bold text-slate-700 hover:bg-slate-50"
+                className="h-12 cursor-pointer rounded-xl border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-[15px] font-bold text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
               />
             }
           >

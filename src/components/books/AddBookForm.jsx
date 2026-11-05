@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const controlClass =
-  "h-11 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 text-[12px] font-normal text-gray-900 placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+  "h-11 w-full rounded-lg border-slate-200 dark:border-gray-700 bg-slate-100 dark:bg-gray-800 px-3.5 text-[12px] font-normal text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
 const AddBookForm = ({ categories }) => {
 
@@ -71,7 +71,7 @@ const AddBookForm = ({ categories }) => {
       <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
               Book Title
             </label>
             <Input
@@ -83,7 +83,7 @@ const AddBookForm = ({ categories }) => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
               Author Name
             </label>
             <Input
@@ -97,11 +97,11 @@ const AddBookForm = ({ categories }) => {
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
               Category
             </label>
             <Select name="category" defaultValue="Fiction">
-              <SelectTrigger className="h-11 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 font-normal">
+              <SelectTrigger className="h-11 w-full rounded-lg border-slate-200 dark:border-gray-700 bg-slate-100 dark:bg-gray-800 px-3.5 font-normal">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
               <SelectContent>
@@ -115,7 +115,7 @@ const AddBookForm = ({ categories }) => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+            <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
               Total Copies
             </label>
             <Input
@@ -130,7 +130,7 @@ const AddBookForm = ({ categories }) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
             Book Cover Image
           </label>
 
@@ -144,20 +144,20 @@ const AddBookForm = ({ categories }) => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 uppercase">
+          <label className="text-[12px] font-extrabold tracking-wide text-gray-900 dark:text-gray-100 uppercase">
             Short Description
           </label>
           <Textarea
             name="description"
             placeholder="Provide a brief summary of the book..."
-            className="min-h-32 w-full rounded-lg border-slate-200 bg-slate-100 px-3.5 py-3 text-sm placeholder:text-gray-400 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            className="min-h-32 w-full rounded-lg border-slate-200 dark:border-gray-700 bg-slate-100 dark:bg-gray-800 px-3.5 py-3 text-sm placeholder:text-gray-400 dark:placeholder:text-gray-500 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
             required
           />
         </div>
 
-        <div className="grid gap-4 rounded-xl bg-gray-100 p-4 sm:grid-cols-2 sm:p-6">
+        <div className="grid gap-4 rounded-xl bg-gray-100 dark:bg-gray-800 p-4 sm:grid-cols-2 sm:p-6">
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 uppercase">
+            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 dark:text-gray-400 uppercase">
               Uploader Name
             </label>
             <Input
@@ -169,7 +169,7 @@ const AddBookForm = ({ categories }) => {
           </div>
 
           <div className="flex flex-col gap-1">
-            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 uppercase">
+            <label className="text-[10px] font-extrabold tracking-wide text-gray-500 dark:text-gray-400 uppercase">
               Uploader Email
             </label>
             <Input

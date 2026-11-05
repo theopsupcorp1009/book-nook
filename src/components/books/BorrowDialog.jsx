@@ -17,12 +17,11 @@ import { toast } from "react-toastify";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const borrowerRowClass =
-  "flex items-center justify-between rounded-xl bg-slate-50 p-3";
+  "flex items-center justify-between rounded-xl bg-slate-50 dark:bg-gray-800 p-3";
 const borrowerLabelClass =
-  "text-[12px] font-extrabold tracking-wide text-slate-400 uppercase";
+  "text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase";
 const borrowerValueClass =
-  "w-auto border-0 bg-transparent p-0 text-right text-[12px] font-extrabold text-slate-900 shadow-none focus-visible:ring-0";
-
+  "min-w-0 w-0 flex-1 border-0 bg-transparent p-0 text-right text-[12px] font-extrabold text-slate-900 dark:text-gray-100 shadow-none focus-visible:ring-0";
 const BorrowDialog = ({ book, disabled }) => {
   const router = useRouter();
   const { data: session } = useSession();
@@ -77,7 +76,7 @@ const BorrowDialog = ({ book, disabled }) => {
       </div>
 
       <DialogContent className="gap-0 rounded-3xl p-5 sm:max-w-md">
-        <DialogTitle className="text-[16px] font-extrabold text-slate-900">
+        <DialogTitle className="text-[16px] font-extrabold text-slate-900 dark:text-gray-100">
           Confirm Book Borrow
         </DialogTitle>
 
@@ -86,17 +85,17 @@ const BorrowDialog = ({ book, disabled }) => {
           <input type="hidden" name="bookTitle" value={book?.title || ""} />
           <input type="hidden" name="bookImage" value={cover || ""} />
 
-          <div className="mt-3 flex items-center gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-4">
+          <div className="mt-3 flex items-center gap-4 rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 p-4">
             <img
               src={cover}
               alt={book?.title}
               className="size-16 rounded-xl object-cover"
             />
             <div className="min-w-0">
-              <p className="truncate text-[14px] font-extrabold text-slate-900">
+              <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
                 {book?.title}
               </p>
-              <p className="truncate text-[12px] text-gray-400">
+              <p className="truncate text-[12px] text-gray-400 dark:text-gray-500">
                 By {book?.author}
               </p>
             </div>
@@ -141,7 +140,7 @@ const BorrowDialog = ({ book, disabled }) => {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-10 cursor-pointer rounded-xl border-slate-200 text-[12px] font-bold text-slate-700 hover:bg-slate-50"
+                  className="h-10 cursor-pointer rounded-xl border-slate-200 dark:border-gray-700 text-[12px] font-bold text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
                 />
               }
             >
