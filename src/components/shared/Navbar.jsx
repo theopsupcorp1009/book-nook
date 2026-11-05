@@ -12,7 +12,7 @@ import {
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { BiExit } from "react-icons/bi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -27,6 +27,10 @@ const Navbar = () => {
   const router = useRouter();
   const [darkMode, setDarkmode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(()=>{
+    document.documentElement.classList.toggle("dark", darkMode)
+  }, [darkMode])
 
   const { data: session, isPending } = useSession();
   const user = session?.user;
