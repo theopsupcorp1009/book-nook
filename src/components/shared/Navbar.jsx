@@ -129,7 +129,7 @@ const Navbar = () => {
                   </div>
                 </PopoverTrigger>
 
-                <PopoverContent className="w-auto p-5" align="start">
+                <PopoverContent className="hidden lg:block w-auto p-5" align="start">
                   <div>
                     <p className="font-bold">{user.name}</p>
                     <p className="text-[12px] text-muted-foreground">
