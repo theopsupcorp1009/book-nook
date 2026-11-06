@@ -29,9 +29,9 @@ return (
           <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
             Book Details
           </span>
-          <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
-            Category
-          </span>
+          <span className="inline-block max-w-full break-words rounded-full bg-slate-100 dark:bg-gray-800 px-4 py-2 text-[12px] font-extrabold text-slate-700 dark:text-gray-300">
+  {book?.category}
+</span>
           <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
             Available Copies
           </span>
@@ -63,14 +63,14 @@ return (
                   className="size-14 shrink-0 rounded-xl object-cover"
                 />
 
-                <div className="min-w-0">
-                  <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
-                    {book?.title}
-                  </p>
-                  <p className="truncate text-[12px] text-slate-400 dark:text-gray-500">
-                    By {book?.author}
-                  </p>
-                </div>
+                <div className="min-w-0 flex-1">
+  <p className="break-words text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
+    {book?.title}
+  </p>
+  <p className="break-words text-[12px] text-slate-400 dark:text-gray-500">
+    By {book?.author}
+  </p>
+</div>
               </Link>
 
               {/* Book Information */}
