@@ -8,18 +8,19 @@ import { getTokenFromServer } from "@/lib/getTokenFromServer";
 
 const BookDetailsPage = async ({ params }) => {
   const { id } = await params;
-  
+
   const token = await getTokenFromServer();
 
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books/${id}`, {
-          cache: "no-store",
-          headers: {
-            authorization: `Bearer ${token}`,
-          }
-        }
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books/${id}`,
+    {
+      cache: "no-store",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
   );
-  
+
   const book = await res.json();
 
   if (!res.ok || !book?.title) {
@@ -61,13 +62,13 @@ const BookDetailsPage = async ({ params }) => {
         Back to All Books
       </Link>
 
-      <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-5 overflow-hidden rounded-3xl bg-white dark:bg-gray-900 shadow-xl shadow-gray-200 dark:shadow-black/20 sm:max-w-[500] sm:mx-auto md:max-w-full lg:max-w-full h-full md:h-[85vh] lg:h-[80vh]">
+      <div className="flex flex-col md:flex-row lg:flex-row justify-between gap-5 overflow-hidden rounded-3xl bg-white dark:bg-gray-900 shadow-xl shadow-gray-200 dark:shadow-black/20 sm:max-w-[500px] sm:mx-auto md:max-w-full lg:max-w-full h-full md:h-[70vh] lg:h-[80vh]">
   
-        <div className="relative h-[70vh] shrink-0 self-stretch sm:w-full md:w-[300px] md:my-auto md:h-full md:overflow-hidden lg:w-[400px]">
+        <div className="relative w-full h-[55vh] shrink-0 sm:h-[60vh] md:w-[240px] md:h-full lg:w-[400px] lg:h-full">
           <img
             src={cover}
             alt={title}
-            className="absolute inset-0 size-full object-fit"
+            className="absolute inset-0 size-full object-fit md:object-cover lg:object-cover"
           />
 
           <Badge className="absolute top-6 left-6 h-8 rounded-full bg-gray-900/85 px-4 text-[12px] font-extrabold text-white backdrop-blur-sm">
@@ -75,19 +76,17 @@ const BookDetailsPage = async ({ params }) => {
           </Badge>
         </div>
 
-      
-        <div className="flex min-w-0 flex-1 flex-col p-8 lg:p-12 my-auto">
+        <div className="flex min-w-0 flex-1 flex-col px-5 pb-8 md:justify-center md:p-6 lg:p-12 my-auto">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <Badge className="h-8 rounded-full bg-emerald-50 dark:bg-emerald-950/40 px-4 text-[12px] font-extrabold text-emerald-600 dark:text-emerald-400">
               {copiesLeft} Available {copiesLeft === 1 ? "Copy" : "Copies"}
             </Badge>
 
             {formattedDate && (
-        <span className="text-[12px] text-gray-400 dark:text-gray-500 font-bold">
-          Added {formattedDate}
-        </span>
-      )}
-
+              <span className="text-[12px] text-gray-400 dark:text-gray-500 font-bold">
+                Added {formattedDate}
+              </span>
+            )}
           </div>
 
           <h1 className="mt-4 text-[24px] font-extrabold tracking-tight text-slate-900 dark:text-gray-100 lg:text-5xl">
@@ -125,7 +124,7 @@ const BookDetailsPage = async ({ params }) => {
           </div>
 
           <div>
-            <BorrowDialog book={book} disabled={copiesLeft===0}/>
+            <BorrowDialog book={book} disabled={copiesLeft === 0} />
           </div>
         </div>
       </div>

@@ -64,7 +64,7 @@ const Banner = () => {
         >
           {banners.map((banner, index) => (
             <SwiperSlide key={index}>
-              <div className="relative h-[77vh] md:h-[80vh] lg:h-[80vh] overflow-hidden rounded-3xl p-10 text-center md:text-left lg:text-left">
+              <div className="relative h-[75h] md:h-[80vh] lg:h-[80vh] overflow-hidden rounded-3xl p-10 text-center md:text-left lg:text-left">
 
                 
                 <div
