@@ -1,3 +1,4 @@
+
 import React from "react";
 import ReturnBorrows from "./ReturnBorrows";
 import Image from "next/image";
@@ -7,7 +8,9 @@ const AddedBorrowsCard = ({ myBorrows }) => {
 
   const formatDate = (date) => {
     if (!date) return "—";
+
     const parsed = new Date(date);
+
     return Number.isNaN(parsed.getTime())
       ? "—"
       : parsed.toISOString().slice(0, 10);
@@ -24,18 +27,22 @@ const AddedBorrowsCard = ({ myBorrows }) => {
         </p>
       ) : (
         <>
+          {/* Desktop Header */}
           <div
             className={`${gridCols} hidden border-b border-slate-100 py-5 dark:border-gray-800 lg:grid`}
           >
             <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase dark:text-gray-500">
               Book Title
             </span>
+
             <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase dark:text-gray-500">
               Borrow Date
             </span>
+
             <span className="text-[12px] font-extrabold tracking-wide text-slate-400 uppercase dark:text-gray-500">
               Return Deadline
             </span>
+
             <span className="text-right text-[12px] font-extrabold tracking-wide text-slate-400 uppercase dark:text-gray-500">
               Action
             </span>
@@ -46,19 +53,23 @@ const AddedBorrowsCard = ({ myBorrows }) => {
               key={borrow?._id}
               className="border-b border-slate-100 px-4 py-4 last:border-b-0 dark:border-gray-800 sm:px-6 lg:p-0"
             >
-    
+              {/* Mobile Layout */}
               <div className="space-y-4 lg:hidden">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src={borrow?.bookImage}
-                    alt={borrow?.bookTitle || "Book cover"}
-                    width={56}
-                    height={56}
-                    className="size-14 shrink-0 rounded-lg object-cover"
-                  />
+                  {borrow.book?.image ? (
+                    <Image
+                      src={borrow.book.image}
+                      alt={borrow.book.title || "Book cover"}
+                      width={56}
+                      height={56}
+                      className="size-14 shrink-0 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <div className="size-14 shrink-0 rounded-lg bg-slate-100 dark:bg-gray-800" />
+                  )}
 
                   <p className="min-w-0 flex-1 text-sm leading-5 font-bold text-slate-900 dark:text-gray-100">
-                    {borrow?.bookTitle}
+                    {borrow.book?.title || "Book no longer available"}
                   </p>
                 </div>
 
@@ -67,6 +78,7 @@ const AddedBorrowsCard = ({ myBorrows }) => {
                     <p className="text-[11px] text-slate-400 dark:text-gray-500">
                       Borrow Date
                     </p>
+
                     <p className="text-xs font-semibold text-slate-700 dark:text-gray-300">
                       {formatDate(borrow?.borrowDate)}
                     </p>
@@ -76,6 +88,7 @@ const AddedBorrowsCard = ({ myBorrows }) => {
                     <p className="text-[11px] text-slate-400 dark:text-gray-500">
                       Return Deadline
                     </p>
+
                     <p className="text-xs font-semibold text-[#F59E0B]">
                       {formatDate(borrow?.returnDate)}
                     </p>
@@ -87,20 +100,26 @@ const AddedBorrowsCard = ({ myBorrows }) => {
                 </div>
               </div>
 
+              {/* Desktop Layout */}
               <div
                 className={`${gridCols} hidden border-b border-slate-100 py-4 last:border-b-0 dark:border-gray-800 lg:grid`}
               >
                 <div className="flex min-w-0 items-center gap-4">
-                  <Image
-                    src={borrow?.bookImage}
-                    alt={borrow?.bookTitle || "Book cover"}
-                    width={56}
-                    height={56}
-                    className="size-14 shrink-0 rounded-xl object-cover"
-                  />
+                  {borrow.book?.image ? (
+                    <Image
+                      src={borrow.book.image}
+                      alt={borrow.book.title || "Book cover"}
+                      width={56}
+                      height={56}
+                      className="size-14 shrink-0 rounded-xl object-cover"
+                    />
+                  ) : (
+                    <div className="size-14 shrink-0 rounded-xl bg-slate-100 dark:bg-gray-800" />
+                  )}
+
                   <div className="min-w-0">
                     <p className="text-[12px] font-extrabold break-words text-slate-900 dark:text-gray-100">
-                      {borrow?.bookTitle}
+                      {borrow.book?.title || "Book no longer available"}
                     </p>
                   </div>
                 </div>

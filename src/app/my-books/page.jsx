@@ -1,4 +1,4 @@
-import AddedBooksCard from "@/components/books/AddedBooksCard";
+import MyBooksSearch from "@/components/books/MyBooksSearch";
 import { Button } from "@/components/ui/button";
 import { CirclePlus } from "lucide-react";
 import { auth } from "@/lib/auth";
@@ -61,7 +61,7 @@ const MyBooksPage = async () => {
         </div>
 
         <div className="mt-8">
-          <AddedBooksCard myBooks={myBooks} categories={categories} />
+          <MyBooksSearch myBooks={myBooks} categories={categories} />
         </div>
       </div>
     </div>

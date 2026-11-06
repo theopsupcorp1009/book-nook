@@ -1,4 +1,4 @@
-import AddedBorrowsCard from '@/components/books/AddedBorrowsCard';
+import MyBorrowsSearch from '@/components/books/MyBorrowsSearch';
 import { auth } from '@/lib/auth';
 import { getTokenFromServer } from '@/lib/getTokenFromServer';
 import { headers } from 'next/headers';
@@ -37,7 +37,7 @@ const MyBorrowsPage = async() => {
                     <p className="mt-1 text-[12px] text-slate-500 dark:text-gray-400">Track active book loans and return titles when you finish reading.</p>
                 </div>
                 <div className="mt-8">
-                    <AddedBorrowsCard myBorrows={myBorrows}/>
+                    <MyBorrowsSearch myBorrows={myBorrows} />
                 </div>
             </div>
         </div>
