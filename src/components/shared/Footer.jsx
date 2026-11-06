@@ -12,7 +12,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <div>
+    <div className="border-t border-gray-100 dark:border-gray-800">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
