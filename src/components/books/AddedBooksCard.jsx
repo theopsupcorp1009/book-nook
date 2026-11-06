@@ -30,7 +30,7 @@ return (
             Book Details
           </span>
           <span className="inline-block max-w-full break-words rounded-full bg-slate-100 dark:bg-gray-800 px-4 py-2 text-[12px] font-extrabold text-slate-700 dark:text-gray-300">
-  {book?.category}
+  Category}
 </span>
           <span className="text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase">
             Available Copies
