@@ -21,19 +21,22 @@ const MyBooksPage = async () => {
   const token = await getTokenFromServer();
 
   const categoryRes = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`,
+  { cache: "no-store" }
+);
   if (!categoryRes.ok) notFound();
   const categoryData = await categoryRes.json();
   const categories = categoryData.map((category) => category.name);
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${user?.email}`,
-    {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
+ const res = await fetch(
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/my-books/${user?.email}`,
+  {
+    headers: {
+      authorization: `Bearer ${token}`,
     },
-  );
+    cache: "no-store",
+  }
+);
   const myBooks = await res.json();
   if (!res.ok) notFound();
   console.log(myBooks);
