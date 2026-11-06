@@ -92,14 +92,14 @@ const BorrowDialog = ({ book, disabled }) => {
       alt={book?.title}
       className="size-16 rounded-xl object-cover"
     />
-    <div className="min-w-0">
-      <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
-        {book?.title}
-      </p>
-      <p className="truncate text-[12px] text-gray-400 dark:text-gray-500">
-        By {book?.author}
-      </p>
-    </div>
+    <div className="min-w-0 flex-1">
+  <p className="break-words text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
+    {book?.title}
+  </p>
+  <p className="break-words text-[12px] text-gray-400 dark:text-gray-500">
+    By {book?.author}
+  </p>
+</div>
   </div>
 
   <div className="mt-3 space-y-3">
