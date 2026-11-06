@@ -17,11 +17,12 @@ import { toast } from "react-toastify";
 import { getTokenFromClient } from "@/lib/getTokenFromClient";
 
 const borrowerRowClass =
-  "flex items-center justify-between rounded-xl bg-slate-50 dark:bg-gray-800 p-3";
+  "flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 rounded-xl bg-slate-50 dark:bg-gray-800 p-3";
 const borrowerLabelClass =
   "text-[12px] font-extrabold tracking-wide text-slate-400 dark:text-gray-500 uppercase";
 const borrowerValueClass =
-  "min-w-0 w-0 flex-1 border-0 bg-transparent p-0 text-right text-[12px] font-extrabold text-slate-900 dark:text-gray-100 shadow-none focus-visible:ring-0";
+  "min-w-0 w-full md:w-0 flex-1 border-0 bg-transparent p-0 text-left md:text-right text-[12px] font-extrabold text-slate-900 dark:text-gray-100 shadow-none focus-visible:ring-0";
+
 const BorrowDialog = ({ book, disabled }) => {
   const router = useRouter();
   const { data: session } = useSession();
@@ -81,80 +82,80 @@ const BorrowDialog = ({ book, disabled }) => {
         </DialogTitle>
 
         <form onSubmit={handleSubmit}>
-          <input type="hidden" name="bookId" value={book?._id || ""} />
-          <input type="hidden" name="bookTitle" value={book?.title || ""} />
-          <input type="hidden" name="bookImage" value={cover || ""} />
+  <input type="hidden" name="bookId" value={book?._id || ""} />
+  <input type="hidden" name="bookTitle" value={book?.title || ""} />
+  <input type="hidden" name="bookImage" value={cover || ""} />
 
-          <div className="mt-3 flex items-center gap-4 rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 p-4">
-            <img
-              src={cover}
-              alt={book?.title}
-              className="size-16 rounded-xl object-cover"
-            />
-            <div className="min-w-0">
-              <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
-                {book?.title}
-              </p>
-              <p className="truncate text-[12px] text-gray-400 dark:text-gray-500">
-                By {book?.author}
-              </p>
-            </div>
-          </div>
+  <div className="mt-3 flex items-center gap-4 rounded-2xl border border-slate-100 dark:border-gray-800 bg-slate-50 dark:bg-gray-800 p-4">
+    <img
+      src={cover}
+      alt={book?.title}
+      className="size-16 rounded-xl object-cover"
+    />
+    <div className="min-w-0">
+      <p className="truncate text-[14px] font-extrabold text-slate-900 dark:text-gray-100">
+        {book?.title}
+      </p>
+      <p className="truncate text-[12px] text-gray-400 dark:text-gray-500">
+        By {book?.author}
+      </p>
+    </div>
+  </div>
 
-          <div className="mt-3 space-y-3">
-            <div className={borrowerRowClass}>
-              <span className={borrowerLabelClass}>Borrower</span>
-              <Input
-                name="borrowerName"
-                value={user?.name || ""}
-                readOnly
-                className={borrowerValueClass}
-              />
-            </div>
+  <div className="mt-3 space-y-3">
+    <div className={borrowerRowClass}>
+      <span className={borrowerLabelClass}>Borrower</span>
+      <Input
+        name="borrowerName"
+        value={user?.name || ""}
+        readOnly
+        className={borrowerValueClass}
+      />
+    </div>
 
-            <div className={borrowerRowClass}>
-              <span className={borrowerLabelClass}>Email</span>
-              <Input
-                name="borrowerEmail"
-                value={user?.email || ""}
-                readOnly
-                className={borrowerValueClass}
-              />
-            </div>
+    <div className={borrowerRowClass}>
+      <span className={borrowerLabelClass}>Email</span>
+      <Input
+        name="borrowerEmail"
+        value={user?.email || ""}
+        readOnly
+        className={borrowerValueClass}
+      />
+    </div>
 
-            <div className={borrowerRowClass}>
-              <span className={borrowerLabelClass}>Loan Period</span>
-              <Input
-                name="loanPeriod"
-                value="14 Days"
-                readOnly
-                className={`${borrowerValueClass} text-orange-500`}
-              />
-            </div>
-          </div>
+    <div className={borrowerRowClass}>
+      <span className={borrowerLabelClass}>Loan Period</span>
+      <Input
+        name="loanPeriod"
+        value="14 Days"
+        readOnly
+        className={`${borrowerValueClass} text-orange-500`}
+      />
+    </div>
+  </div>
 
-          {/* Actions */}
-          <div className="mt-3 grid grid-cols-2 gap-4">
-            <DialogClose
-              render={
-                <Button
-                  type="button"
-                  variant="outline"
-                  className="h-10 cursor-pointer rounded-xl border-slate-200 dark:border-gray-700 text-[12px] font-bold text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
-                />
-              }
-            >
-              Cancel
-            </DialogClose>
+  {/* Actions */}
+  <div className="mt-3 grid grid-cols-2 gap-4">
+    <DialogClose
+      render={
+        <Button
+          type="button"
+          variant="outline"
+          className="h-10 cursor-pointer rounded-xl border-slate-200 dark:border-gray-700 text-[12px] font-bold text-slate-700 dark:text-gray-300 hover:bg-slate-50 dark:hover:bg-gray-800"
+        />
+      }
+    >
+      Cancel
+    </DialogClose>
 
-            <Button
-              type="submit"
-              className="h-10 cursor-pointer rounded-xl bg-[#F59E0B] text-[12px] font-extrabold text-white hover:bg-[#E38508]"
-            >
-              Confirm Borrow
-            </Button>
-          </div>
-        </form>
+    <Button
+      type="submit"
+      className="h-10 cursor-pointer rounded-xl bg-[#F59E0B] text-[12px] font-extrabold text-white hover:bg-[#E38508]"
+    >
+      Confirm Borrow
+    </Button>
+  </div>
+</form>
       </DialogContent>
     </Dialog>
   );
