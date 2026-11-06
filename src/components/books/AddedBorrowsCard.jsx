@@ -2,6 +2,7 @@
 import React from "react";
 import ReturnBorrows from "./ReturnBorrows";
 import Image from "next/image";
+import Link from "next/link";
 
 const AddedBorrowsCard = ({ myBorrows }) => {
   const isBorrows = Array.isArray(myBorrows) && myBorrows.length > 0;
@@ -27,7 +28,6 @@ const AddedBorrowsCard = ({ myBorrows }) => {
         </p>
       ) : (
         <>
-          {/* Desktop Header */}
           <div
             className={`${gridCols} hidden border-b border-slate-100 py-5 dark:border-gray-800 lg:grid`}
           >
@@ -53,9 +53,8 @@ const AddedBorrowsCard = ({ myBorrows }) => {
               key={borrow?._id}
               className="border-b border-slate-100 px-4 py-4 last:border-b-0 dark:border-gray-800 sm:px-6 lg:p-0"
             >
-              {/* Mobile Layout */}
               <div className="space-y-4 lg:hidden">
-                <div className="flex items-center gap-3">
+                <Link href={`/all-books/${borrow.book._id}`} className="flex items-center gap-3">
                   {borrow.book?.image ? (
                     <Image
                       src={borrow.book.image}
@@ -71,7 +70,7 @@ const AddedBorrowsCard = ({ myBorrows }) => {
                   <p className="min-w-0 flex-1 text-sm leading-5 font-bold text-slate-900 dark:text-gray-100">
                     {borrow.book?.title || "Book no longer available"}
                   </p>
-                </div>
+                </Link>
 
                 <div className="flex justify-between gap-3">
                   <div>
