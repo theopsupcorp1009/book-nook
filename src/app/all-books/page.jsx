@@ -8,8 +8,15 @@ const AllBooks = async () => {
     let books = [];
 
   try {
-    const categoryRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/categories`);
-    const bookRes = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/all-books`);
+    const categoryRes = await fetch(
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/categories`,
+  { cache: "no-store" }
+);
+
+const bookRes = await fetch(
+  `${process.env.NEXT_PUBLIC_SERVER_URL}/all-books`,
+  { cache: "no-store" }
+);
     if (!categoryRes.ok || !bookRes.ok) {
       throw new Error("Failed to fetch data");
     }
