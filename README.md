@@ -2,10 +2,10 @@
 
 A small online library built with **Next.js**, **React**, and **Tailwind CSS**. Add a book, borrow a book, return a book. Members can browse the full catalog, share their own books, borrow titles for 14 days, and track everything from a personal dashboard, all backed by a dedicated Express and MongoDB API.
 
-🔗 **Live App:** [book-nook-indol.vercel.app](https://book-nook-indol.vercel.app/)
-📦 **Repository:** [theopsupcorp1009/book-nook](https://github.com/theopsupcorp1009/book-nook)
-🖥️ **Server API:** [book-nook-server-iota.vercel.app](https://book-nook-server-iota.vercel.app/)
-📦 **Server Repository:** [theopsupcorp1009/book-nook-server](https://github.com/theopsupcorp1009/book-nook-server)
+- 🔗 **Live App:** [book-nook-indol.vercel.app](https://book-nook-indol.vercel.app/)
+- 📦 **Repository:** [theopsupcorp1009/book-nook](https://github.com/theopsupcorp1009/book-nook)
+- 🖥️ **Server API:** [book-nook-server-iota.vercel.app](https://book-nook-server-iota.vercel.app/)
+- 📦 **Server Repository:** [theopsupcorp1009/book-nook-server](https://github.com/theopsupcorp1009/book-nook-server)
 
 ---
 
